@@ -1,7 +1,11 @@
 import pandas as pd
-import json
 import functions
 from pathlib import Path
+
+from functions import post_submodel_element
+
+
+topic = "topic1"
 
 # --- Hilfsfunktion ---
 def get_or_default(value, default=None):
@@ -52,7 +56,11 @@ for _, row in df.iterrows():
     records.append(record)
 
 for i, record in enumerate(records):
-    print(functions.convert_record_to_body(record))
+    #print(functions.convert_record_to_body(record))
+    functions.safe_post_with_retry(functions.convert_record_to_body(record), topic)
+    #post_submodel_element(functions.convert_record_to_body(record), topic)
+
 
 # --- Ausgabe ---
-print(json.dumps(records, indent=2, ensure_ascii=False))
+#print(json.dumps(records, indent=2, ensure_ascii=False))
+#post_submodel_element(records, "topic1")
