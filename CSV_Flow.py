@@ -1,7 +1,11 @@
 import pandas as pd
-import json
 import functions
 from pathlib import Path
+
+from functions import post_submodel_element
+
+
+topic = "topic1"
 
 # --- Hilfsfunktion ---
 def get_or_default(value, default=None):
@@ -9,7 +13,7 @@ def get_or_default(value, default=None):
 
 # --- CSV Pfad ---
 base_path = Path(r"C:\\Users\\Public\\Documents\\OEE_CSVs")
-file_csv = base_path / "OEE_Kurz.csv"  # beliebige Datei mit Header + Datensätzen
+file_csv = base_path / "OEE_Metadaten_one_line.csv" #OEE_Kurz.csv"  # beliebige Datei mit Header + Datensätzen
 
 # --- CSV einlesen ---
 try:
@@ -38,10 +42,12 @@ def map_to_record(row: pd.Series) -> dict:
             "DelayTime": get_or_default(row.get("Stillstandszeit nicht beeinflussbar")),
             "ProducedQuantity": quantity,
             "GoodQuantity": get_or_default(row.get("Gutmenge")),
-            "Factor1": get_or_default(row.get("Breite")),
-            "Factor2": get_or_default(row.get("Dicke")),
-            "Factor3": get_or_default(row.get("ZAHNFORM")),
-            "Factor4": get_or_default(row.get("SCHRAENKUNG"))
+            "Factors": {
+                "Factor1": get_or_default(row.get("Breite")),
+                "Factor2": get_or_default(row.get("Dicke")),
+                "Factor3": get_or_default(row.get("ZAHNFORM")),
+                "Factor4": get_or_default(row.get("SCHRAENKUNG"))
+            }
         }
     }
 
@@ -52,7 +58,11 @@ for _, row in df.iterrows():
     records.append(record)
 
 for i, record in enumerate(records):
-    print(functions.convert_record_to_body(record))
+    #print(functions.convert_record_to_body(record))
+    functions.safe_post_with_retry(functions.convert_record_to_body(record), topic)
+    #post_submodel_element(functions.convert_record_to_body(record), topic)
+
 
 # --- Ausgabe ---
-print(json.dumps(records, indent=2, ensure_ascii=False))
+#print(json.dumps(records, indent=2, ensure_ascii=False))
+#post_submodel_element(records, "topic1")
