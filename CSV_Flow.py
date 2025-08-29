@@ -13,7 +13,7 @@ def get_or_default(value, default=None):
 
 # --- CSV Pfad ---
 base_path = Path(r"C:\\Users\\Public\\Documents\\OEE_CSVs")
-file_csv = base_path / "OEE_Kurz.csv"  # beliebige Datei mit Header + Datensätzen
+file_csv = base_path / "OEE_Metadaten_one_line.csv" #OEE_Kurz.csv"  # beliebige Datei mit Header + Datensätzen
 
 # --- CSV einlesen ---
 try:
