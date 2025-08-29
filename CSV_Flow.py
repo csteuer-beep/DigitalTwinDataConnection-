@@ -42,10 +42,12 @@ def map_to_record(row: pd.Series) -> dict:
             "DelayTime": get_or_default(row.get("Stillstandszeit nicht beeinflussbar")),
             "ProducedQuantity": quantity,
             "GoodQuantity": get_or_default(row.get("Gutmenge")),
-            "Factor1": get_or_default(row.get("Breite")),
-            "Factor2": get_or_default(row.get("Dicke")),
-            "Factor3": get_or_default(row.get("ZAHNFORM")),
-            "Factor4": get_or_default(row.get("SCHRAENKUNG"))
+            "Factors": {
+                "Factor1": get_or_default(row.get("Breite")),
+                "Factor2": get_or_default(row.get("Dicke")),
+                "Factor3": get_or_default(row.get("ZAHNFORM")),
+                "Factor4": get_or_default(row.get("SCHRAENKUNG"))
+            }
         }
     }
 

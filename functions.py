@@ -21,10 +21,10 @@ def convert_record_to_body(record_json: dict) -> dict:
             {"modelType": "Property", "idShort": "DelayTime", "value": r["DelayTime"], "valueType": "xs:float"},
             {"modelType": "Property", "idShort": "ProducedQuantity", "value": r["ProducedQuantity"], "valueType": "xs:float"},
             {"modelType": "Property", "idShort": "GoodQuantity", "value": r["GoodQuantity"], "valueType": "xs:float"},
-            {"modelType": "Property", "idShort": "Factor1", "value": r["Factor1"], "valueType": "xs:float"},
-            {"modelType": "Property", "idShort": "Factor2", "value": r["Factor2"], "valueType": "xs:float"},
-            {"modelType": "Property", "idShort": "Factor3", "value": r["Factor3"], "valueType": "xs:float"},
-            {"modelType": "Property", "idShort": "Factor4", "value": r["Factor4"], "valueType": "xs:float"},
+            {"modelType": "Property", "idShort": "Factor1", "value": r["Factors"]["Factor1"], "valueType": "xs:float"},
+            {"modelType": "Property", "idShort": "Factor2", "value": r["Factors"]["Factor2"], "valueType": "xs:float"},
+            {"modelType": "Property", "idShort": "Factor3", "value": r["Factors"]["Factor3"], "valueType": "xs:float"},
+            {"modelType": "Property", "idShort": "Factor4", "value": r["Factors"]["Factor4"], "valueType": "xs:float"},
         ],
     }
 
