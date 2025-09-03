@@ -61,6 +61,7 @@ def safe_post_with_retry(body, topic, max_retries=3, delay=3, log_path="C:\\User
     for attempt in range(1, max_retries + 1):
         try:
             response = post_submodel_element(body, topic)
+            print(f"HTTP-Request sent successfully on attempt {attempt}")
             return response
         except Exception as e:
             logging.error(f"POST fehlgeschlagen (Versuch {attempt}): {e}")
