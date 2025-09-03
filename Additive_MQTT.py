@@ -43,7 +43,6 @@ def normalize_status(payload: dict) -> dict:
     job = str(payload.get("job") or payload.get("Job") or "").strip()
     return {"status": status, "timestamp": ts, "job": job}
 
-
 def avg_filterzustand(payload: dict):
     ts = payload.get("Time") or payload.get("timestamp") or payload.get("Timestamp") or now_iso()
     try:
@@ -87,6 +86,8 @@ def accumulate(msg: dict):
         now = time.time() * 1000
 
     job_id_in = msg.get("job", "")
+
+    print("Job Startet" if not state["job_active"] and status in ACTIVE else "Job Update", status, ts_str, job_id_in)
 
     # start job
     if not state["job_active"] and status in ACTIVE:
