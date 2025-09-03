@@ -3,9 +3,12 @@ import functions
 from pathlib import Path
 
 from functions import post_submodel_element
+import json
 
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
-topic = "topic1"
+topic = config['topic_csv']
 
 # --- Hilfsfunktion ---
 def get_or_default(value, default=None):
@@ -60,6 +63,7 @@ for _, row in df.iterrows():
 for i, record in enumerate(records):
     #print(functions.convert_record_to_body(record))
     functions.safe_post_with_retry(functions.convert_record_to_body(record), topic)
+    print(functions.convert_record_to_body(record))
     #post_submodel_element(functions.convert_record_to_body(record), topic)
 
 

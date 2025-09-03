@@ -2,7 +2,11 @@ import requests
 import time
 import logging
 import json
-y
+
+with open('config.json', 'r') as f:
+    config = json.load(f)
+
+ip_address_AAS = config['ip_address_AAS']
 
 def convert_record_to_body(record_json: dict) -> dict:
     """
@@ -46,7 +50,7 @@ def post_submodel_element(body: dict, topic: str) -> dict:
     """
     Sendet eine POST-Request mit dem gegebenen JSON-Body an die festgelegte URL.
     """
-    url = f"http://127.0.0.1:1880/test/{topic}" #f"http://url:port/submodels/{topic}/submodel-elements"
+    url = f"http://{ip_address_AAS}/submodels/{topic}/submodel-elements"
     headers = {"Content-Type": "application/json"}
     response = requests.post(url, json=body, headers=headers)
     response.raise_for_status()
