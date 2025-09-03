@@ -1,14 +1,12 @@
 import pandas as pd
 import functions
 from pathlib import Path
-
-from functions import post_submodel_element
 import json
 
 with open('config.json', 'r') as f:
     config = json.load(f)
 
-topic = config['topic_csv']
+topic = config['topic_csv']   #data from config.json to not publish in git
 
 # --- Hilfsfunktion ---
 def get_or_default(value, default=None):

@@ -5,8 +5,7 @@ import json
 
 with open('config.json', 'r') as f:
     config = json.load(f)
-
-ip_address_AAS = config['ip_address_AAS']
+ip_address_AAS = config['ip_address_AAS']    #data from config.json to not publish in git
 
 def convert_record_to_body(record_json: dict) -> dict:
     """
