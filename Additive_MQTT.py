@@ -1,5 +1,3 @@
-# filepath: mqtt_job_processor.py
-
 import json
 import time
 import random

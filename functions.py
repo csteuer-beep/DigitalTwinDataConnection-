@@ -2,9 +2,7 @@ import requests
 import time
 import logging
 import json
-
-
-# filepath: convert_record.py
+y
 
 def convert_record_to_body(record_json: dict) -> dict:
     """
@@ -42,9 +40,6 @@ def convert_record_to_body(record_json: dict) -> dict:
             },
         ],
     }
-
-
-
 
 
 def post_submodel_element(body: dict, topic: str) -> dict:
